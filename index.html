@@ -6,7 +6,21 @@
     <title>Smarter Shopping</title>
     <link href="stylesheet.css" rel="stylesheet" type="text/css">
     <link href="printing.css" rel="stylesheet" type="text/css" media="print">
-    <script src="myJS.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="myJS.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#reset').click(function() {
+                $.ajax({
+                    url: 'https://wt.ops.labs.vu.nl/api20/a36aadb2/reset',
+                    type: "GET",
+                    success: function() {
+                        alert("rested");
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -114,7 +128,7 @@ Enjoy
                     </td>
                 </tr>
             </table>
-            <button onclick="reset()" type="button">reset</button>
+            <button id=reset type="button">reset</button>
         </form>
     </section>
 
