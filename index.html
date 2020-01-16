@@ -14,8 +14,9 @@
                 $.ajax({
                     url: 'https://wt.ops.labs.vu.nl/api20/a36aadb2/reset',
                     type: "GET",
-                    success: function() {
-                        alert("rested");
+                    dataType: "html",
+                    success: function(data) {
+                        alert(data);
                     }
                 });
             });
