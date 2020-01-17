@@ -57,3 +57,20 @@ function sortTable2(z) {
         }
     }
 }
+
+$(document).ready(function() {
+    reset();
+})
+
+function reset() {
+    $('#reset').click(function() {
+        $.ajax({
+            url: 'https://wt.ops.labs.vu.nl/api20/a36aadb2/reset',
+            type: "GET",
+            dataType: "html",
+            success: function(data) {
+                alert(data);
+            }
+        });
+    });
+}

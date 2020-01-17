@@ -6,22 +6,8 @@
     <title>Smarter Shopping</title>
     <link href="stylesheet.css" rel="stylesheet" type="text/css">
     <link href="printing.css" rel="stylesheet" type="text/css" media="print">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="myJS.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#reset').click(function() {
-                $.ajax({
-                    url: 'https://wt.ops.labs.vu.nl/api20/a36aadb2/reset',
-                    type: "GET",
-                    dataType: "html",
-                    success: function(data) {
-                        alert(data);
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="myJS.js"></script>
 </head>
 
 <body>
