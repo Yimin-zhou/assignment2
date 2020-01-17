@@ -72,19 +72,55 @@ function reset() {
 }
 
 function loadTableData() {
-    $.getJSON("https://wt.ops.labs.vu.nl/api20/a36aadb2", function(data) {
-        var tableData = "";
-        $.each(data, function(key, value) {
-            tableData += "<tr>";
-            tableData += "<td>" + value.brand + "</td>";
-            tableData += "<td>" + value.model + "</td>";
-            tableData += "<td>" + value.os + "</td>";
-            tableData += "<td><figure><img src=\"" + value.image + "\">" + "</figure></td>";
-            tableData += "<td>" + value.screensize + "</td>";
-            tableData += "</tr>";
-        });
-        $('#table1').append(tableData);
+    $.ajax({
+        url: 'https://wt.ops.labs.vu.nl/api20/a36aadb2',
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            var tableData = "";
+            $.each(data, function(key, value) {
+                tableData += "<tr>";
+                tableData += "<td>" + value.brand + "</td>";
+                tableData += "<td>" + value.model + "</td>";
+                tableData += "<td>" + value.os + "</td>";
+                tableData += "<td><figure><img src=\"" + value.image + "\">" + "</figure></td>";
+                tableData += "<td>" + value.screensize + "</td>";
+                tableData += "</tr>";
+            });
+            $('#table1').append(tableData);
+        }
     });
+}
+
+function insertTableData() {
+    $("#insert").click(function() {
+        $.ajax({
+            url: 'https://wt.ops.labs.vu.nl/api20/a36aadb2',
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                var tableData = "";
+                clearTable();
+                $.each(data, function(key, value) {
+                    tableData += "<tr>";
+                    tableData += "<td>" + value.brand + "</td>";
+                    tableData += "<td>" + value.model + "</td>";
+                    tableData += "<td>" + value.os + "</td>";
+                    tableData += "<td><figure><img src=\"" + value.image + "\">" + "</figure></td>";
+                    tableData += "<td>" + value.screensize + "</td>";
+                    tableData += "</tr>";
+                });
+                $('#table1').append(tableData);
+            }
+        });
+    });
+}
+
+function clearTable() {
+    var table = document.getElementById("table1");
+    for (var i = table.rows.length - 1; i > 1; i--) {
+        table.deleteRow(i);
+    }
 }
 
 function submitFormData() {
@@ -98,6 +134,7 @@ function submitFormData() {
 }
 $(document).ready(function() {
     submitFormData();
+    insertTableData();
     loadTableData();
     reset();
 })
