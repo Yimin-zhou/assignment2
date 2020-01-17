@@ -70,9 +70,33 @@ function sortTable2(z) {
     }
 }
 
-function reset() {
-    const xhr = new XMLHttpRequest();
-
-    xhr.open("GET", "https://wt.ops.labs.vu.nl/api20/a36aadb2/reset", false);
-    xhr.send();
+function loadTableData(){
+  $.getJSON("https://wt.ops.labs.vu.nl/api20/a36aadb2" ,function(data){
+  var tableData = "";
+  $.each(data, function(key, value){
+    tableData += "<tr>";
+    tableData += "<td>" + value.brand + "</td>";
+    tableData += "<td>" + value.model + "</td>";
+    tableData += "<td>" + value.os + "</td>";
+    tableData += "<td><figure><img src=\"" + value.image + "\">" + "</figure></td>";
+    tableData += "<td>" + value.screensize + "</td>";
+    tableData += "</tr>";
+  });
+  $('#table1').append(tableData);
+  });
 }
+
+function submitFormData(){
+
+  $("#submit").click(function(e){
+    e.preventDefault();
+    $.post("https://wt.ops.labs.vu.nl/api20/a36aadb2",
+    {brand: $("#brand").val(), model: $("#model").val(), os: $("#os").val(), image: $("#image").val(), screensize: $("#screensize").val(), },
+    function(){}
+    );
+  });
+}
+$(document).ready(function(){
+  submitFormData();
+  loadTableData();
+})
