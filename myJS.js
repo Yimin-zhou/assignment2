@@ -1,6 +1,6 @@
 function sortTable1(z) {
     var table, rows;
-    var switching, shouldSwitch, switchCount = 0;
+    var switching, shouldSwitch;
 
     table = document.getElementById("table1");
     switching = true;
@@ -13,7 +13,7 @@ function sortTable1(z) {
             var x = rows[i].getElementsByTagName("td")[z];
             var y = rows[i + 1].getElementsByTagName("td")[z];
 
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            if (x.innerHTML > y.innerHTML) {
 
                 shouldSwitch = true;
                 break;
@@ -24,19 +24,13 @@ function sortTable1(z) {
             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
             switching = true;
 
-            switchCount++;
-        } else {
-
-            if (switchCount == 0) {
-                switching = true;
-            }
         }
     }
 }
 
 function sortTable2(z) {
     var table, rows;
-    var switching, shouldSwitch, switchCount = 0;
+    var switching, shouldSwitch;
 
     table = document.getElementById("table2");
     switching = true;
@@ -49,7 +43,7 @@ function sortTable2(z) {
             var x = rows[i].getElementsByTagName("td")[z];
             var y = rows[i + 1].getElementsByTagName("td")[z];
 
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            if (x.innerHTML > y.innerHTML) {
 
                 shouldSwitch = true;
                 break;
@@ -60,12 +54,6 @@ function sortTable2(z) {
             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
             switching = true;
 
-            switchCount++;
-        } else {
-
-            if (switchCount == 0) {
-                switching = true;
-            }
         }
     }
 }
