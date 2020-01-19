@@ -8,12 +8,12 @@ function sortTable1(z) {
     while (switching) {
         switching = false;
         rows = table.rows;
-        for (var i = 1; i < (rows.length - 2); i++) {
+        for (var i = 1; i < (rows.length - 1); i++) {
             shouldSwitch = false;
             var x = rows[i].getElementsByTagName("td")[z];
             var y = rows[i + 1].getElementsByTagName("td")[z];
 
-            if (x.innerHTML > y.innerHTML) {
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
 
                 shouldSwitch = true;
                 break;
@@ -43,7 +43,7 @@ function sortTable2(z) {
             var x = rows[i].getElementsByTagName("td")[z];
             var y = rows[i + 1].getElementsByTagName("td")[z];
 
-            if (x.innerHTML > y.innerHTML) {
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
 
                 shouldSwitch = true;
                 break;
@@ -126,10 +126,23 @@ function clearTable() {
 function submitFormData() {
 
     $("#submit").click(function(e) {
+        var info = {
+            brand: $("#brand").val(),
+            model: $("#model").val(),
+            os: $("#os").val(),
+            image: $("#image").val(),
+            screensize: $("#screensize").val(),
+        };
         e.preventDefault();
-        $.post("https://wt.ops.labs.vu.nl/api20/a36aadb2", { brand: $("#brand").val(), model: $("#model").val(), os: $("#os").val(), image: $("#image").val(), screensize: $("#screensize").val(), },
-            function() {}
-        );
+        $.ajax({
+            type: "POST",
+            url: "https://wt.ops.labs.vu.nl/api20/a36aadb2",
+            dataType: "json",
+            data: info,
+            success: function() {
+                alert("submitted,use INSERT");
+            }
+        });
     });
 }
 $(document).ready(function() {
